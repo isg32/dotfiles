@@ -7,6 +7,6 @@ date=$(date '+%Y-%m-%d')
 rm -fr .config
 cp -r ~/.config .config
 
-git add .config backup.sh 
+git add .config backup.sh README.md
 
 git commit -m "$date: $msg" -s
