@@ -2,7 +2,7 @@
 
 ## Install the dependencies
 ```sh
-sudo pacman -Sy hyprland waybar grim slurp rofi dconf kitty nwg-bar pulse sway xsettingsd 
+sudo apt install bspwm polybar dunst grim slurp rofi dconf kitty pulse sway xsettingsd mpd ncmpcpp 
 ```
 
 ## Backup and enjoy
