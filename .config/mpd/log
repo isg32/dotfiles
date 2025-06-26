@@ -1,0 +1,46 @@
+Jun 25 13:53 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:53 : config: option 'path' on line 25 was not recognized
+Jun 25 13:53 : exception: Failed to access /home/isg32/Music: No such file or directory
+Jun 25 13:55 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:55 : config: option 'path' on line 25 was not recognized
+Jun 25 13:57 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:57 : config: option 'path' on line 25 was not recognized
+Jun 25 13:57 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:57 : config: option 'path' on line 25 was not recognized
+Jun 25 13:58 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:58 : config: option 'path' on line 26 was not recognized
+Jun 25 13:58 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:58 : config: option 'path' on line 26 was not recognized
+Jun 25 13:59 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:59 : config: option 'path' on line 26 was not recognized
+Jun 25 13:59 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:59 : config: option 'path' on line 26 was not recognized
+Jun 25 13:59 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 13:59 : config: option 'path' on line 26 was not recognized
+Jun 25 14:00 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 14:00 : config: option 'path' on line 25 was not recognized
+Jun 25 14:00 : exception: Failed to open '/home/isg32/.config/mpd/state': No such file or directory
+Jun 25 14:00 : config: option 'path' on line 25 was not recognized
+Jun 25 14:02 : exception: Failed to commit /home/isg32/.config/mpd/state: File exists
+Jun 25 14:02 : exception: Failed to commit /home/isg32/.config/mpd/state: File exists
+Jun 25 14:02 : exception: Failed to commit /home/isg32/.config/mpd/state: File exists
+Jun 25 14:02 : config: option 'path' on line 26 was not recognized
+Jun 25 14:09 : config: option 'path' on line 26 was not recognized
+Jun 25 14:16 : config: option 'path' on line 26 was not recognized
+Jun 25 14:17 : config: option 'path' on line 26 was not recognized
+Jun 25 14:18 : config: option 'path' on line 26 was not recognized
+Jun 25 14:19 : config: option 'path' on line 26 was not recognized
+Jun 25 14:19 : config: option 'path' on line 26 was not recognized
+Jun 25 14:21 : config: option 'path' on line 26 was not recognized
+Jun 25 14:26 : config: option 'path' on line 26 was not recognized
+Jun 25 14:27 : update: added /Kilby Girl.mp3
+Jun 25 14:34 : player: played "Kilby Girl.mp3"
+Jun 25 14:34 : config: option 'path' on line 26 was not recognized
+Jun 25 14:51 : player: played "Kilby Girl.mp3"
+Jun 25 15:23 : config: option 'path' on line 26 was not recognized
+Jun 25 15:29 : player: played "Kilby Girl.mp3"
+Jun 25 15:52 : player: played "Kilby Girl.mp3"
+Jun 25 16:07 : config: option 'path' on line 26 was not recognized
+Jun 25 17:51 : config: option 'path' on line 26 was not recognized
+Jun 25 18:54 : config: option 'path' on line 26 was not recognized
+Jun 26 12:47 : config: option 'path' on line 26 was not recognized
