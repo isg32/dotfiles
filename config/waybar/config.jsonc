@@ -1,0 +1,105 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 2,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "tray",
+        "custom/wallpaper",
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "battery",
+        "custom/notification"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "empty": ""
+        },
+        "persistent-workspaces": { "*": 5 }
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 45,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M  %a %d %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "on-click": "gnome-calendar"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+
+    // Opens GNOME's own Sound settings panel; scroll to change volume instantly.
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "gnome-control-center sound",
+        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "tooltip-format": "{desc}\nClick: mute  Right-click: Sound settings"
+    },
+
+    // Opens GNOME's own Wi-Fi settings panel on click.
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 wired",
+        "format-disconnected": "󰤭 offline",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\nClick: Wi-Fi settings",
+        "on-click": "gnome-control-center wifi"
+    },
+
+    // Opens GNOME's own Bluetooth settings panel on click.
+    "bluetooth": {
+        "format": "󰂯 {status}",
+        "format-connected": "󰂱 {device_alias}",
+        "format-off": "󰂲 off",
+        "tooltip-format": "Click: Bluetooth settings",
+        "on-click": "gnome-control-center bluetooth"
+    },
+
+    // Opens GNOME's own Power settings panel on click.
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"],
+        "states": { "warning": 20, "critical": 10 },
+        "on-click": "gnome-control-center power",
+        "tooltip-format": "{timeTo}\nClick: Power settings"
+    },
+
+    "custom/wallpaper": {
+        "format": "󰸉",
+        "tooltip": "Left-click: pick wallpaper  ·  Right-click: next wallpaper",
+        "on-click": "~/.config/hypr/scripts/wallpaper-picker.sh",
+        "on-click-right": "~/.config/hypr/scripts/wallpaper-next.sh"
+    },
+
+    "custom/notification": {
+        "format": "󰂚",
+        "tooltip": "Notifications / quick toggles",
+        "on-click": "swaync-client -t -sw"
+    }
+}

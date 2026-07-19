@@ -1,0 +1,67 @@
+@define-color noti-border-color rgba(255, 255, 255, 0.08);
+@define-color cc-bg #1e1e1e;
+@define-color noti-bg #2a2a2a;
+@define-color noti-bg-hover #333333;
+@define-color noti-bg-focus #333333;
+@define-color text-color #e3e3e3;
+@define-color accent #3584e4;
+@define-color bg-selected @accent;
+
+* {
+    font-family: "Adwaita Sans", "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 13px;
+}
+
+.control-center {
+    background: @cc-bg;
+    border-radius: 14px;
+    border: 1px solid @noti-border-color;
+    color: @text-color;
+}
+
+.notification-row .notification-background {
+    background: @noti-bg;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.notification-row:hover .notification-background {
+    background: @noti-bg-hover;
+}
+
+.widget-title { margin: 10px; font-size: 16px; font-weight: 700; color: @text-color; }
+.widget-title button {
+    background: @noti-bg;
+    color: @text-color;
+    border-radius: 8px;
+}
+
+.widget-dnd { margin: 8px 10px; }
+.widget-dnd > switch { border-radius: 999px; }
+.widget-dnd > switch:checked { background: @accent; }
+
+.widget-volume, .widget-backlight { margin: 4px 10px; }
+.widget-volume > box > slider,
+.widget-backlight > box > slider { background: @accent; }
+trough { background: rgba(255,255,255,0.1); border-radius: 999px; }
+scale trough highlight { background: @accent; border-radius: 999px; }
+
+.widget-buttons-grid {
+    margin: 8px 10px;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    background: @noti-bg;
+    color: @text-color;
+    border-radius: 10px;
+    padding: 10px;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background: @accent;
+}
+
+.notification-action {
+    background: @noti-bg;
+    color: @text-color;
+    border-radius: 8px;
+}
+.notification-action:hover { background: @accent; }

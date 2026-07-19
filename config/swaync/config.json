@@ -1,0 +1,92 @@
+{
+    "$schema": "/etc/xdg/swaync/configSchema.json",
+    "positionX": "right",
+    "positionY": "top",
+    "control-center-margin-top": 10,
+    "control-center-margin-right": 10,
+    "control-center-width": 400,
+    "control-center-height": 600,
+    "notification-window-width": 400,
+    "timeout": 6,
+    "timeout-low": 4,
+    "timeout-critical": 0,
+    "notification-icon-size": 48,
+    "notification-body-image-height": 120,
+    "notification-body-image-width": 220,
+    "keyboard-shortcuts": true,
+    "image-visibility": "when-available",
+    "transition-time": 200,
+    "hide-on-clear": false,
+    "hide-on-action": true,
+    "script-fail-notify": true,
+
+    "widgets": [
+        "title",
+        "dnd",
+        "volume",
+        "backlight",
+        "buttons-grid",
+        "notifications"
+    ],
+
+    "widget-config": {
+        "title": {
+            "text": "Notifications",
+            "clear-all-button": true,
+            "button-text": "Clear all"
+        },
+        "dnd": {
+            "text": "Do Not Disturb"
+        },
+        "volume": {
+            "label": "󰕾"
+        },
+        "backlight": {
+            "label": "󰃟"
+        },
+        "buttons-grid": {
+            "actions": [
+                {
+                    "label": "󰤨",
+                    "command": "gnome-control-center wifi",
+                    "text": "Wi-Fi"
+                },
+                {
+                    "label": "󰂯",
+                    "command": "gnome-control-center bluetooth",
+                    "text": "Bluetooth"
+                },
+                {
+                    "label": "󰕾",
+                    "command": "gnome-control-center sound",
+                    "text": "Sound"
+                },
+                {
+                    "label": "󰁹",
+                    "command": "gnome-control-center power",
+                    "text": "Power"
+                },
+                {
+                    "label": "󰍹",
+                    "command": "gnome-control-center display",
+                    "text": "Displays"
+                },
+                {
+                    "label": "󰸉",
+                    "command": "~/.config/hypr/scripts/wallpaper-picker.sh",
+                    "text": "Wallpaper"
+                },
+                {
+                    "label": "󰌾",
+                    "command": "hyprlock",
+                    "text": "Lock"
+                },
+                {
+                    "label": "󰐥",
+                    "command": "gnome-session-quit --power-off",
+                    "text": "Power off"
+                }
+            ]
+        }
+    }
+}
