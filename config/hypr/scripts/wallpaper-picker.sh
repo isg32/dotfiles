@@ -9,24 +9,32 @@ if [ "${#wallpapers[@]}" -eq 0 ]; then
     exit 1
 fi
 
-declare -A path_by_name
+declare -A path_by_index
 entries=""
+i=0
 for path in "${wallpapers[@]}"; do
     name="$(basename "$path")"
-    path_by_name["$name"]="$path"
+    path_by_index["$i"]="$path"
 
     thumb="$THUMB_DIR/${name%.*}.png"
     if [ ! -f "$thumb" ]; then
-        magick "$path" -thumbnail 480x480 -gravity center -extent 480x480 "$thumb" 2>/dev/null
+        # `^` makes -thumbnail fill the box (cropping overflow) instead of the
+        # default letterbox-with-padding behavior, which was baking visible
+        # white bars into every non-square wallpaper's thumbnail.
+        magick "$path" -thumbnail '480x480^' -gravity center -extent 480x480 "$thumb" 2>/dev/null
     fi
 
-    entries+="img:${thumb}:text:${name}\n"
+    # The label just needs to be short and unique — a long filename left a
+    # residual width gap next to the image even at font-size:1px/opacity:0
+    # (GTK Label sizing doesn't fully collapse based on CSS alone).
+    entries+="img:${thumb}:text:${i}\n"
+    i=$((i + 1))
 done
 
-selected_name=$(printf "%b" "$entries" | wofi --conf "$HOME/.config/wofi/wallpaper.conf" \
+selected_index=$(printf "%b" "$entries" | wofi --conf "$HOME/.config/wofi/wallpaper.conf" \
     --style "$HOME/.config/wofi/wallpaper-style.css" --dmenu)
 
-[ -z "$selected_name" ] && exit 0
+[ -z "$selected_index" ] && exit 0
 
-selected_path="${path_by_name[$selected_name]}"
+selected_path="${path_by_index[$selected_index]}"
 [ -n "$selected_path" ] && set_wallpaper "$selected_path"
