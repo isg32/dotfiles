@@ -17,11 +17,17 @@ confirm() {
 }
 
 require_arch() {
-    [ -f /etc/arch-release ] || { err "This repo targets Arch Linux (pacman not found / no /etc/arch-release)."; exit 1; }
+    if [ ! -f /etc/arch-release ]; then
+        err "This repo targets Arch Linux (pacman not found / no /etc/arch-release)."
+        exit 1
+    fi
 }
 
 require_not_root() {
-    [ "$EUID" -eq 0 ] && { err "Run this as your normal user, not root — it calls sudo itself where needed."; exit 1; }
+    if [ "$EUID" -eq 0 ]; then
+        err "Run this as your normal user, not root — it calls sudo itself where needed."
+        exit 1
+    fi
 }
 
 pkg_installed() { pacman -Qq "$1" &>/dev/null; }
@@ -37,5 +43,8 @@ detect_gpus() {
     NVIDIA_PCI="$(gpu_pci_address 'nvidia')"
     AMD_PCI="$(gpu_pci_address 'amd|ati')"
     HAS_HYBRID_NVIDIA=0
-    [ -n "$INTEL_PCI" ] && [ -n "$NVIDIA_PCI" ] && HAS_HYBRID_NVIDIA=1
+    if [ -n "$INTEL_PCI" ] && [ -n "$NVIDIA_PCI" ]; then
+        HAS_HYBRID_NVIDIA=1
+    fi
+    return 0
 }
