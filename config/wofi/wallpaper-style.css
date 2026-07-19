@@ -31,4 +31,13 @@ window {
 
 #img { border-radius: 8px; }
 
-#text { color: inherit; }
+/* Image-only grid: wofi hardcodes image+text as a horizontal box per entry
+   (no config/CSS way to stack or drop it), so the filename label is kept
+   for selection purposes but collapsed to invisible/zero-width instead. */
+#text {
+    opacity: 0;
+    font-size: 1px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
