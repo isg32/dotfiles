@@ -22,7 +22,8 @@ configured from scratch to match.
 | Polkit agent | hyprpolkitagent | |
 | Portals | xdg-desktop-portal-hyprland + -gtk | File pickers use the GTK portal (matches GNOME look), screenshare/screenshot use the Hyprland portal |
 | Theming | reused from GNOME | `gsd-xsettings` propagates your existing Adwaita GTK theme/cursor/fonts (`gsettings`/`dconf`) so nothing needs restyling separately |
-| GPU switching | NVIDIA PRIME (optional, auto-detected) | Two login sessions (Intel-primary / NVIDIA-primary) + `prime-run <cmd>` for per-app offload in either |
+| GPU switching | NVIDIA PRIME (optional, auto-detected) | Two login sessions (Intel-primary / NVIDIA-primary) + `prime-run <cmd>` for per-app offload in either; `Fn+G` / waybar icon triggers a full switch |
+| Power profile | power-profiles-daemon | `Fn+Q` / waybar icon cycles quiet → balanced → performance |
 
 Apps deliberately **not** reimplemented — GNOME's own are used instead:
 Settings (`gnome-control-center`), Files (`nautilus`), Terminal
@@ -124,6 +125,8 @@ ASSUME_YES=1 ./install.sh    # skip the "proceed with GRUB/mkinitcpio changes?" 
 | `$mod + drag LMB/RMB` | Move / resize window |
 | Volume/brightness/media keys | Handled natively (`wpctl`, `brightnessctl`, `playerctl`) |
 | Lid close | Lock immediately |
+| `Fn + Q` (Lenovo hardware key, unverified — see below) | Cycle power profile: quiet → balanced → performance |
+| `Fn + G` (not bound by default — see below) | Switch primary GPU (confirms, then logs out) |
 
 Full list, and where to change any of it: `config/hypr/conf/keybinds.conf`.
 
@@ -144,7 +147,9 @@ Full list, and where to change any of it: `config/hypr/conf/keybinds.conf`.
 
 ## GPU switching (hybrid Intel+NVIDIA only)
 
-Two independent mechanisms, pick whichever fits:
+A Wayland compositor picks its primary GPU once, at startup — there's no live
+hot-swap of the whole desktop's renderer. Three ways to actually use the
+second GPU, in increasing order of how much they disrupt your session:
 
 - **Per-app offload, no session switch needed** — from either session:
   ```sh
@@ -153,11 +158,47 @@ Two independent mechanisms, pick whichever fits:
   ```
   Runs that one process on the NVIDIA GPU while everything else keeps using
   the session's primary GPU. This is the normal day-to-day way to use the
-  dGPU.
-- **Whole-session switch** — log out, and at the login screen pick "Hyprland"
-  (Intel primary, NVIDIA dGPU stays runtime-suspended for battery) or
-  "Hyprland (NVIDIA)" (dGPU is the primary renderer for everything). Useful
-  if you want sustained heavy GPU use rather than a single offloaded app.
+  dGPU, and the only one that doesn't touch your running session at all.
+- **Full switch via waybar icon or `Fn+G`** — `config/hypr/scripts/gpu-switch.sh`.
+  Shows a wofi confirm prompt, then (if confirmed) best-effort pre-selects the
+  other session via AccountsService D-Bus calls (harmless if that's not
+  honored on your system — you just pick it manually instead) and logs you
+  out. **Every open app closes.** At the GDM login screen, pick the other
+  session and log back in — a password re-entry is unavoidable here, there's
+  no way to skip GDM's authentication step from inside the old session
+  without weakening login security.
+- **Manual whole-session switch** — same as above but done by hand: log out,
+  and at the login screen pick "Hyprland" (Intel primary, NVIDIA dGPU stays
+  runtime-suspended for battery) or "Hyprland (NVIDIA)" (dGPU is the primary
+  renderer for everything).
+
+### Verifying the `Fn+Q` / `Fn+G` hardware keybinds
+
+`config/hypr/conf/keybinds.conf` binds power-profile cycling to `XF86Launch1`
+as a best guess for this hardware's `Fn+Q` (a common mapping for the
+ideapad-laptop/lenovo-wmi driver's quiet/balanced/performance key), and
+leaves the `Fn+G` line commented out — there's no reliable default guess for
+a GPU-switch hotkey since it isn't a standard Fn-row icon on most models.
+Both actions work via their waybar icons regardless of whether the hotkey is
+bound correctly, so this step is optional polish, not required for either
+feature to work. To find (or confirm) the right key name:
+
+```sh
+wev
+```
+
+Run it inside a Wayland session (works under your current GNOME session too,
+since it queries the compositor directly), press the physical key, and read
+the `sym` value it prints for the key-press event. Some vendor hotkeys are
+consumed entirely by firmware/kernel WMI handling and never reach the
+compositor as a normal keysym at all — if `wev` shows nothing on keypress,
+that's why, and the hotkey can't be bound this way on this hardware. Once you
+have the real name(s), edit the two lines in `keybinds.conf`:
+
+```
+bind = , XF86Launch1, exec, ~/.config/hypr/scripts/power-profile-cycle.sh
+bind = , <REAL_KEY_NAME>, exec, ~/.config/hypr/scripts/gpu-switch.sh
+```
 
 `switcheroo-control` is also enabled, so Nautilus's right-click "Launch Using
 Discrete Graphics" works too.

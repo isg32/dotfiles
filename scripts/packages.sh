@@ -10,7 +10,7 @@ CORE_PACKAGES=(
     hyprshot grim slurp satty
     hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
     switcheroo-control brightnessctl playerctl
-    wl-clipboard cliphist wtype jq imagemagick
+    wl-clipboard cliphist wtype jq imagemagick wev
     qt5ct qt6ct
     ttf-jetbrains-mono-nerd noto-fonts noto-fonts-emoji
 )

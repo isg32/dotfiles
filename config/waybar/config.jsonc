@@ -12,6 +12,8 @@
     "modules-right": [
         "tray",
         "custom/wallpaper",
+        "custom/power-profile",
+        "custom/gpu",
         "pulseaudio",
         "network",
         "bluetooth",
@@ -95,6 +97,24 @@
         "tooltip": "Left-click: pick wallpaper  ·  Right-click: next wallpaper",
         "on-click": "~/.config/hypr/scripts/wallpaper-picker.sh",
         "on-click-right": "~/.config/hypr/scripts/wallpaper-next.sh"
+    },
+
+    // Cycles quiet/balanced/performance (power-profiles-daemon). Same action as Fn+Q.
+    "custom/power-profile": {
+        "exec": "~/.config/hypr/scripts/power-profile-status.sh",
+        "on-click": "~/.config/hypr/scripts/power-profile-cycle.sh",
+        "return-type": "json",
+        "interval": 3
+    },
+
+    // Shows which GPU this session is primary on. Only meaningful on a hybrid
+    // Intel+NVIDIA machine — remove this module from modules-right above if
+    // you don't have one. Same action as Fn+G.
+    "custom/gpu": {
+        "exec": "~/.config/hypr/scripts/gpu-status.sh",
+        "on-click": "~/.config/hypr/scripts/gpu-switch.sh",
+        "return-type": "json",
+        "interval": "once"
     },
 
     "custom/notification": {
