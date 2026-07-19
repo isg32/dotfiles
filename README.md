@@ -26,10 +26,31 @@ configured from scratch to match.
 | Power profile | power-profiles-daemon | `Fn+Q` / waybar icon cycles quiet → balanced → performance |
 
 Apps deliberately **not** reimplemented — GNOME's own are used instead:
-Settings (`gnome-control-center`), Files (`nautilus`), Terminal
-(`gnome-console`), keyring (`gnome-keyring`), shutdown/logout dialog
-(`gnome-session-quit`), theming (`gnome-tweaks` still works normally — it
-just edits gsettings/dconf, which isn't tied to gnome-shell).
+Settings (`gnome-control-center`), Files (`nautilus`), keyring
+(`gnome-keyring`), theming (`gnome-tweaks` still works normally — it just
+edits gsettings/dconf, which isn't tied to gnome-shell). Terminal is
+`kitty` (`config/kitty/`) rather than `gnome-console`, and the power
+menu (`config/hypr/scripts/power-menu.sh`) drives `systemctl`/`hyprlock`
+directly instead of `gnome-session-quit` — see "GNOME apps that don't just
+work" below for why.
+
+### GNOME apps that don't just work under Hyprland
+
+Two GNOME components gate themselves on `XDG_CURRENT_DESKTOP`/session
+presence and silently do nothing (no window, no error) if you call them the
+naive way:
+
+- **`gnome-control-center`** refuses to start unless `XDG_CURRENT_DESKTOP`
+  contains `GNOME` or `Unity`. Every place this repo calls it (waybar
+  clicks, the swaync buttons-grid, `$mod+I`) prefixes the call with
+  `env XDG_CURRENT_DESKTOP=GNOME` rather than changing the session-wide
+  variable (which portals/theming rely on being `Hyprland`).
+- **`gnome-session-quit`** talks to the `org.gnome.SessionManager` D-Bus
+  service, which is provided by `gnome-session` — and nothing runs
+  `gnome-session` in this setup (Hyprland is the compositor directly, not
+  managed by it). Calling it fails with `ServiceUnknown`. `power-menu.sh`
+  replaces it with `systemctl`/`loginctl`/`hyprlock` calls plus a wofi
+  confirm step for the destructive ones (reboot/poweroff).
 
 ## Requirements
 
@@ -97,7 +118,7 @@ ASSUME_YES=1 ./install.sh    # skip the "proceed with GRUB/mkinitcpio changes?" 
 
 | Keys | Action |
 |---|---|
-| `$mod + Return` | Terminal (`gnome-console`) |
+| `$mod + Return` | Terminal (`kitty`) |
 | `$mod + E` | File manager (`nautilus`) |
 | `$mod + B` | Browser (`firefox`) |
 | `$mod + D` | App launcher (wofi) |

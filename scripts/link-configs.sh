@@ -8,7 +8,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$DIR/.." && pwd)"
 source "$DIR/lib.sh"
 
-TARGETS=(hypr waybar swaync wofi xdg-desktop-portal)
+TARGETS=(hypr waybar swaync wofi xdg-desktop-portal kitty)
 STAMP="$(date +%Y%m%d%H%M%S 2>/dev/null || echo backup)"
 
 mkdir -p "$HOME/.config"

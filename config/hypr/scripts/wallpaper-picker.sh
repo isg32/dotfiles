@@ -17,7 +17,7 @@ for path in "${wallpapers[@]}"; do
 
     thumb="$THUMB_DIR/${name%.*}.png"
     if [ ! -f "$thumb" ]; then
-        magick "$path" -thumbnail 320x320 -gravity center -extent 320x320 "$thumb" 2>/dev/null
+        magick "$path" -thumbnail 480x480 -gravity center -extent 480x480 "$thumb" 2>/dev/null
     fi
 
     entries+="${name}\0icon\x1f${thumb}\n"

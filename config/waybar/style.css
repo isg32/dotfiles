@@ -76,6 +76,10 @@ window#waybar {
     color: #e01b24;
 }
 
+#battery.charging {
+    color: #2ec27e;
+}
+
 #network.disconnected,
 #bluetooth.off {
     color: #9a9996;

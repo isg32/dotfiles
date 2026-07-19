@@ -22,13 +22,8 @@
     ],
 
     "hyprland/workspaces": {
-        "format": "{icon}",
+        "format": "{id}",
         "on-click": "activate",
-        "format-icons": {
-            "active": "",
-            "default": "",
-            "empty": ""
-        },
         "persistent-workspaces": { "*": 5 }
     },
 
@@ -58,7 +53,7 @@
         },
         "scroll-step": 5,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "gnome-control-center sound",
+        "on-click-right": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound",
         "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
         "tooltip-format": "{desc}\nClick: mute  Right-click: Sound settings"
@@ -70,7 +65,7 @@
         "format-ethernet": "󰈀 wired",
         "format-disconnected": "󰤭 offline",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)\nClick: Wi-Fi settings",
-        "on-click": "gnome-control-center wifi"
+        "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi"
     },
 
     // Opens GNOME's own Bluetooth settings panel on click.
@@ -79,7 +74,7 @@
         "format-connected": "󰂱 {device_alias}",
         "format-off": "󰂲 off",
         "tooltip-format": "Click: Bluetooth settings",
-        "on-click": "gnome-control-center bluetooth"
+        "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center bluetooth"
     },
 
     // Opens GNOME's own Power settings panel on click.
@@ -88,7 +83,7 @@
         "format-charging": "󰂄 {capacity}%",
         "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"],
         "states": { "warning": 20, "critical": 10 },
-        "on-click": "gnome-control-center power",
+        "on-click": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center power",
         "tooltip-format": "{timeTo}\nClick: Power settings"
     },
 

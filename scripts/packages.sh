@@ -6,7 +6,7 @@ source "$DIR/lib.sh"
 
 CORE_PACKAGES=(
     hyprland hypridle hyprlock hyprpaper
-    waybar wofi swaync
+    waybar wofi swaync kitty
     hyprshot grim slurp satty
     hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
     switcheroo-control brightnessctl playerctl

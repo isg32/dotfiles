@@ -9,7 +9,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$DIR/.." && pwd)"
 source "$DIR/lib.sh"
 
-TARGETS=(hypr waybar swaync wofi xdg-desktop-portal)
+TARGETS=(hypr waybar swaync wofi xdg-desktop-portal kitty)
 
 for name in "${TARGETS[@]}"; do
     dst="$HOME/.config/$name"

@@ -4,8 +4,9 @@
     "positionY": "top",
     "control-center-margin-top": 10,
     "control-center-margin-right": 10,
+    "control-center-margin-bottom": 10,
     "control-center-width": 400,
-    "control-center-height": 600,
+    "control-center-height": 950,
     "notification-window-width": 400,
     "timeout": 6,
     "timeout-low": 4,
@@ -47,44 +48,36 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "󰤨",
-                    "command": "gnome-control-center wifi",
-                    "text": "Wi-Fi"
+                    "label": "󰤨  Wi-Fi",
+                    "command": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi"
                 },
                 {
-                    "label": "󰂯",
-                    "command": "gnome-control-center bluetooth",
-                    "text": "Bluetooth"
+                    "label": "󰂯  Bluetooth",
+                    "command": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center bluetooth"
                 },
                 {
-                    "label": "󰕾",
-                    "command": "gnome-control-center sound",
-                    "text": "Sound"
+                    "label": "󰕾  Sound",
+                    "command": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center sound"
                 },
                 {
-                    "label": "󰁹",
-                    "command": "gnome-control-center power",
-                    "text": "Power"
+                    "label": "󰁹  Power",
+                    "command": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center power"
                 },
                 {
-                    "label": "󰍹",
-                    "command": "gnome-control-center display",
-                    "text": "Displays"
+                    "label": "󰍹  Displays",
+                    "command": "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center display"
                 },
                 {
-                    "label": "󰸉",
-                    "command": "~/.config/hypr/scripts/wallpaper-picker.sh",
-                    "text": "Wallpaper"
+                    "label": "󰸉  Wallpaper",
+                    "command": "~/.config/hypr/scripts/wallpaper-picker.sh"
                 },
                 {
-                    "label": "󰌾",
-                    "command": "hyprlock",
-                    "text": "Lock"
+                    "label": "󰌾  Lock",
+                    "command": "hyprlock"
                 },
                 {
-                    "label": "󰐥",
-                    "command": "gnome-session-quit --power-off",
-                    "text": "Power off"
+                    "label": "󰐥  Power",
+                    "command": "~/.config/hypr/scripts/power-menu.sh"
                 }
             ]
         }

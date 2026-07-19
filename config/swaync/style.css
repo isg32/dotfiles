@@ -19,13 +19,17 @@
     color: @text-color;
 }
 
-.notification-row .notification-background {
+/* The visible notification "card" background actually lives on the deeper
+   .notification node (swaync's own default stylesheet sets it via the
+   --noti-bg/--noti-bg-alpha CSS custom properties, which this file doesn't
+   define — leaving it to fall back to the raw GTK theme, hence the mismatch). */
+.notification-row .notification-background .notification {
     background: @noti-bg;
     border-radius: 10px;
     box-shadow: none;
 }
 
-.notification-row:hover .notification-background {
+.notification-row:hover .notification-background .notification {
     background: @noti-bg-hover;
 }
 
@@ -49,13 +53,22 @@ scale trough highlight { background: @accent; border-radius: 999px; }
 .widget-buttons-grid {
     margin: 8px 10px;
 }
-.widget-buttons-grid > flowbox > flowboxchild > button {
+.widget-buttons-grid flowboxchild {
+    min-width: 130px;
+}
+.widget-buttons-grid flowboxchild > button {
     background: @noti-bg;
     color: @text-color;
     border-radius: 10px;
     padding: 10px;
+    min-width: 130px;
 }
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+.widget-buttons-grid flowboxchild > button label {
+    /* Center icon+text regardless of how short the label is, so every
+       button in the grid looks consistent instead of left-packed. */
+    halign: center;
+}
+.widget-buttons-grid flowboxchild > button:hover {
     background: @accent;
 }
 
