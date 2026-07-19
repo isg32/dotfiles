@@ -20,7 +20,7 @@ for path in "${wallpapers[@]}"; do
         magick "$path" -thumbnail 480x480 -gravity center -extent 480x480 "$thumb" 2>/dev/null
     fi
 
-    entries+="${name}\0icon\x1f${thumb}\n"
+    entries+="img:${thumb}:text:${name}\n"
 done
 
 selected_name=$(printf "%b" "$entries" | wofi --conf "$HOME/.config/wofi/wallpaper.conf" \

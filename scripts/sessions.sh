@@ -17,7 +17,7 @@ if [ "$HAS_HYBRID_NVIDIA" = "1" ] && [ "${SKIP_NVIDIA:-0}" != "1" ]; then
 export LIBVA_DRIVER_NAME=i915
 unset GBM_BACKEND
 unset __GLX_VENDOR_LIBRARY_NAME
-exec Hyprland
+exec start-hyprland
 EOF
     sudo chmod +x /usr/local/bin/hyprland-intel-session
 
@@ -43,7 +43,7 @@ export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export __GL_GSYNC_ALLOWED=0
 export __GL_VRR_ALLOWED=0
-exec Hyprland
+exec start-hyprland
 EOF
     sudo chmod +x /usr/local/bin/hyprland-nvidia-session
 
@@ -63,7 +63,7 @@ else
 [Desktop Entry]
 Name=Hyprland
 Comment=Hyprland compositor
-Exec=Hyprland
+Exec=start-hyprland
 Type=Application
 DesktopNames=Hyprland
 EOF
